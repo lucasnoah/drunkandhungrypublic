@@ -1,0 +1,81 @@
+<style>
+
+  .main-div{
+    background-color:hsla(31,15%,50%,.05  );
+  }
+
+
+  .cellphone-checkout-container{
+  margin-top:2em;
+    min-height: 3.5em;
+    position:fixed;
+    bottom: 0px;
+    width:100%;
+    border:thin black solid;
+}
+  .cellphone-checkout-container a{
+    border-radius:0px;
+    height: 3.5em;
+  }
+
+  .item-container-box:last-child{
+    margin-bottom: 3.4em;
+  }
+
+.checkout-error-box{
+  background-color: lightcoral;
+  min-height: 5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+</style>
+<navbar></navbar>
+
+<div class="container-fluid main-div">
+
+  <div ng-if="!storage.region.active">
+    <not-open-modal></not-open-modal>
+  </div>
+
+
+
+  <div class="row-fluid">
+    <div  class="col-xs-12 col-sm-8 ">
+
+
+
+      <div class="item-container-box" ng-repeat="item in sessionStorage.itemsListArray | filter: {category:currentCategory} | orderBy : 'ranking'">
+        <product-box></product-box>
+      </div>
+
+    </div>
+
+    <div class="hidden-lg hidden-md hidden-sm cellphone-checkout-container">
+    <div ng-show="sessionStorage.checkoutButtonVisibility">
+      <a class="btn btn-primary btn-block" ng-click="navigateToCart()">Checkout {{sessionStorage.cartItemCount}}
+        Items</a>
+      <div class="checkout-error-box"  ng-if="minOrderAmount > cartTotalPrice() && cartTotalPrice() != 0">
+        <p>{{(minOrderAmount - cartTotalPrice()) | centsToDollars | currency}} left to complete the minimum order amount.</p>
+      </div>
+    </div>
+  </div>
+    <!--BEGIN SIDE CART -->
+    <div class="col-sm-4 hidden-xs side-cart-container match-my-cols">
+      <div class="row-fluid">
+        <sidecart items="sessionStorage.itemsListArray" cartcount="sessionStorage.cartIDCount"
+                  cartitemcount="sessionStorage.cartItemCount"></sidecart>
+
+      </div>
+    </div>
+
+    <!-- END SIDE CART -->
+
+  </div>
+</div>
+
+
+<beer-loader></beer-loader>

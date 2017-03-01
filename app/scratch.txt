@@ -1,0 +1,14 @@
+<p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+
+checkout_payment was the last branch
+
+
+
+
+
+/////////////
+
+handle sending region ID to server and retriving real results. Displaying them on main page. and getting them fresh on page refresh. Also, the counter is broken
+
+Stripe script sometimes loads slowly. Put that in the codebase
+

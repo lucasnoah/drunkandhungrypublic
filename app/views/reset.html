@@ -1,0 +1,23 @@
+<navbar></navbar>
+<div class="container">
+  <span us-spinner spinner-key="spinner-1"></span>
+<div ng-if="!resetSuccess">
+  <h1>Reset Your Password</h1>
+  <p>Enter your email and a confirmation link will be sent there.</p>
+  <form ng-submit="resetPassword()" name="resetForm">
+    <formly-form model="resetData" fields="resetFields">
+      <button type="submit" class="btn btn-lg red-button">Submit
+      </button>
+    </formly-form>
+    </form>
+</div>
+<div ng-if="resetFail">
+  <h1>Failure</h1>
+  <p>The reset request failed. Are you sure you have an account?</p>
+
+</div>
+<div ng-if="resetSuccess">
+  <h1>Success!</h1>
+  <P>An email has been sent to your account. Please check it and follow the reset confirmation link.</P>
+</div>
+</div>

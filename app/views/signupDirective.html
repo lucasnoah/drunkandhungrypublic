@@ -1,0 +1,13 @@
+
+<h1>Sign Up</h1>
+<h3>Already have an account? <a href="/login">Login!</a></h3>
+
+<form ng-submit="onSubmitUser()" name="userForm" novalidate>
+  <span us-spinner spinner-key="spinner-1"></span>
+
+      <formly-form model="userData" fields="userFields">
+        <button type="submit" class="btn red-button" ng-disabled="signupForm.$invalid" ng-click="signUp()">Sign Up</button>
+        <button class="btn btn-LG btn-facebook" ng-click="loginWithFacebook()"><span class="fa fa-facebook"></span> SIGNUP WITH FACEBOOK</button>
+      </formly-form>
+</form>
+<beer-loader></beer-loader>

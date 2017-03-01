@@ -1,0 +1,256 @@
+<style>
+
+  .main-nav {
+    height:60px;
+    border-bottom: thin solid black;
+    display: flex;
+    justify-content: space-around;
+    color:#66696c;
+
+  }
+
+  .cell-nav{
+    height:60px;
+    border-bottom: thin solid black;
+    display: flex;
+    justify-content: space-between;
+    color:#66696c;
+  }
+
+  .main-nav a {
+    color:#66696c;
+  }
+
+  .cell-nav a{
+    cursor: pointer;
+    text-decoration: none;
+    color:#66696c;
+  }
+
+  .left-side-brand {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left-side-brand a{
+
+    cursor: pointer;
+    text-decoration: none;
+
+  }
+
+  .brand-image {
+    height: 55px;
+    width: 55px;
+
+  }
+
+  .brand-text {
+    font-family: Bungee Inline, cursive;
+    font-weight: 100;
+    font-size: 1.5rem;
+    font-stretch: extra-condensed;
+    align-self: center;
+    padding-top:2.5rem;
+
+
+  }
+
+  .menu-right-side {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1em;
+    align-items: center;
+    align-content: center;
+
+  }
+
+  .menu-right-side ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin-top:1rem;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .menu-right-side li {
+    display: inline-block;
+    font-size: 1.4rem !important;
+    margin-right: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: "Roboto";
+    font-style: normal;
+  }
+
+  .menu-icon{
+    color:black;
+    font-size: 2.5rem;
+    margin-top:1rem;
+    margin-bottom:auto;
+    margin-right: 3rem;
+
+
+  }
+
+  .sub-menu{
+    transition: background cubic-bezier(0.215, 0.61, 0.355, 1) 275ms;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color:white;
+    z-index: 9999;
+    background-color:white);
+  }
+
+  .sub-menu-item{
+    height:59px;
+    border-bottom:1px solid black;
+    display:flex;
+    align-items: center;
+
+  }
+
+  .sub-menu-item a {
+    color: black;
+    margin-left:2rem;
+    margin-top:3rem;
+    text-transform: uppercase;
+    width:100%;
+    height:100%;
+  }
+
+  .animate-if.ng-enter, .animate-if.ng-leave {
+    -webkit-transition: .3s linear all;
+    -moz-transition: .3s linear all;
+    -ms-transition: .3s linear all;
+    -o-transition: .3s linear all;
+    transition: .3s linear all;
+  }
+  /* du début de l'entrée */
+  .animate-if.ng-enter {
+    max-height: 0;
+    opacity: .7;
+  }
+  /* à la fin de l'entrée */
+  .animate-if.ng-enter.ng-enter-active {
+    max-height: 999px;
+    opacity:1;
+  }
+  /* du début de la sortie */
+  .animate-if.ng-leave {
+    max-height: 999px;
+    opacity:1;
+  }
+  /* à la fin de la sortie */
+  .animate-if.ng-leave.ng-leave-active {
+    max-height: 0;
+    opacity:1;
+  }
+</style>
+
+<div class="main-nav hidden-xs hidden-sm">
+
+  <div class="left-side-brand">
+    <a ng-href="/shop" ng-show="sessionStorage.canShop">
+      <img src="../images/americanbeer.png" class="brand-image" alt="">
+      <span class="brand-text">Drunk And Hungry</span>
+    </a>
+    <a ng-href="/" ng-hide="sessionStorage.canShop" >
+      <img src="../images/americanbeer.png" class="brand-image" alt="">
+      <span class="brand-text">Drunk And Hungry</span>
+    </a>
+  </div>
+
+  <div class="menu-right-side hidden-sm hidden-xs">
+    <ul>
+      <li>
+        <a ng-href="/about">ABOUT </a>
+      </li>
+      <li>
+        <a ng-href="/support">SUPPORT</a>
+      </li>
+      <li>
+        <a ng-href="/shop" ng-if="sessionStorage.canShop">MENU</a>
+      </li>
+      <li  ng-show="isAuthenticated">
+        <a ng-href="/profile">PROFILE</a>
+      </li>
+      <li ng-show="isAuthenticated">
+        <a ng-href="/orders">
+          Orders
+          <span><strong>{{sessionStorage.userOrders.current.length}}</strong></span>
+        </a>
+      </li>
+      <li>
+        <a ng-href="/cart" ng-if="sessionStorage.canShop">
+          Cart
+          <span><strong>{{sessionStorage.cartItemCount}}</strong></span>
+        </a>
+      </li>
+      <li ng-show="isAuthenticated">
+        <a ng-href="/" ng-click="logout()">Logout</a>
+      </li>
+      <li ng-hide="isAuthenticated">
+        <a ng-href="/login">Login</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="cell-nav hidden-md hidden-lg hidden-xl">
+  <div class="left-side-brand">
+    <a ng-href="/" >
+      <img src="../images/americanbeer.png" class="brand-image" alt="">
+      <span class="brand-text">Drunk And Hungry</span>
+    </a>
+  </div>
+
+  <div>
+    <div class="menu-icon" ng-click="toggleSubmenu()"><span ng-if="!submenu">&#9776;</span><span ng-if="submenu">X</span></div>
+  </div>
+</div>
+
+<div class="sub-menu hidden-md hidden-lg animate-if" ng-if="submenu">
+  <div class="sub-menu-item" ng-if="sessionStorage.canShop">
+    <a ng-href="/shop">MENU</a>
+  </div>
+  <div class="sub-menu-item" ng-show="isAuthenticated">
+    <a ng-href="/" ng-click="logout()">Logout</a>
+  </div>
+  <div class="sub-menu-item" ng-hide="isAuthenticated">
+    <a ng-href="/login">Login</a>
+  </div>
+  <div class="sub-menu-item">
+    <a ng-href="/">HOME</a>
+  </div>
+  <div class="sub-menu-item" ng-if="sessionStorage.canShop">
+    <a ng-href="/cart">
+      Cart
+      <span><strong>{{sessionStorage.cartItemCount}}</strong></span>
+    </a>
+  </div>
+
+    <div class="sub-menu-item">
+      <a ng-href="/about">ABOUT</a>
+    </div>
+    <div class="sub-menu-item">
+      <a ng-href="/support">SUPPORT</a>
+    </div>
+    <div ng-show="isAuthenticated" class="sub-menu-item">
+      <a ng-href="/profile">PROFILE</a>
+    </div>
+    <div class="sub-menu-item" ng-show="isAuthenticated">
+      <a ng-href="/orders">
+        Orders
+        <span><strong>{{sessionStorage.userOrders.current.length}}</strong></span>
+      </a>
+    </div>
+</div>
+
+

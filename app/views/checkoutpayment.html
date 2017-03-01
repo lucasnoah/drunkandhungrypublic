@@ -1,0 +1,32 @@
+<navbar></navbar>
+
+<style>
+  .info-error{
+    color:red;
+  }
+  .strike-through {
+    color: red;
+    text-decoration: line-through;
+  }
+</style>
+<div class="container">
+<hr>
+<payment></payment>
+<hr>
+
+<div class="media">
+  <div class="info-error" ng-show="displayCustomerDataError" id="userErrorData">
+    <h3>{{customerDataError}}</h3>
+  </div>
+<div class="col-xs-12">
+<coupon-entry></coupon-entry>
+  </div>
+
+    <h2 class="media-heading pull-left">Total</h2>
+  <h2 class="media-heading pull-left"><span class="strike-through" ng-if="couponDiscount > 0">{{calculateTotal()  | centsToDollars | currency}}</span><span  ng-if="couponDiscount > 0">{{calculateTotal() - couponDiscount | centsToDollars | currency}}</span> <span  ng-if="couponDiscount < 1">{{calculateTotal()  | centsToDollars | currency}}</span></h2>
+
+    <button ng-click="processOrder()" type="button" class="media-heading btn btn-default btn-success">PAY NOW</button>
+
+</div>
+  </div>
+<beer-loader></beer-loader>

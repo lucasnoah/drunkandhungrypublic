@@ -1,0 +1,12 @@
+Install tests for loginCrtlDirective and SignupCrtlDirective. Due to a naming conflict these were never created.
+
+Fix error: %7B%7Bitem.imgUrl%7D%7D:1 GET http://localhost:9000/%7B%7Bitem.imgUrl%7D%7D 404 (Not Found)
+
+
+
+//////////////////
+
+passwords must match.
+credit card form validation.
+
+login init bullshit. make it the same in login directive. it works in signup directive

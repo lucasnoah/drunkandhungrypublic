@@ -1,0 +1,47 @@
+<navbar></navbar>
+<div class="container">
+
+  <h1 style="text-align: center">Current Orders</h1>
+  <div class="col-xs-12" >
+  <div ng-repeat="order in sessionStorage.userOrders.current" ng-if="order.delivered==null">
+    <div class="col-sm-12 user-info-box" style="margin-top: 10px;">
+      <p>{{order.location}}</p>
+      <p>Created: <span am-time-ago="order.placed"></span></p>
+      <hr>
+      <h2>Items:</h2>
+      <ul>
+        <li ng-repeat="item in order.items | hascount: item">{{item.name}} X {{item.count}}</li>
+      </ul>
+      <hr>
+      <div class="col-sm-8 col-xs-12">
+        <span>Total: {{order.total | centsToDollars}}$</span>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <button class="btn btn-lg bt-danger" ng-click="cancelOrder(order.id)">Cancel Order</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="col-xs-12">
+  <h1 style="text-align: center">Past Orders</h1>
+  <div ng-repeat="order in sessionStorage.userOrders.past">
+    <div class="col-xs-12 user-info-box" style="margin-top: 10px;">
+      <p>{{order.location}}</p>
+      <p>Order Created: <span am-time-ago="order.placed"></span></p>
+      <hr>
+      <h2>Items:</h2>
+      <ul>
+        <li ng-repeat="item in order.items | hascount: item">{{item.name}} X {{item.count}}</li>
+      </ul>
+       <hr>
+      <span>Total: {{order.total | centsToDollars}}$</span>
+
+
+    </div>
+  </div>
+</div>
+
+</div>

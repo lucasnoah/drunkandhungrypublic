@@ -1,0 +1,81 @@
+
+<style>
+.product-detail-container{
+  width:100%;
+  min-height:20rem;
+  background-color: white;
+  display:flex;
+  flex-direction: column;
+}
+
+
+
+
+  .product-detail-body{
+    display: flex;
+    flex-direction: row;
+    margin-top:3rem;
+  }
+
+  .product-detail-image{
+    width:45%;
+    min-height: 20rem;
+    align-self: flex-start;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top:2rem;
+    margin-right:1rem;
+    margin-left: 1rem;
+    align-self: center;
+  }
+
+  .product-detail-text{
+    width:45%;
+    align-self:flex-start;
+    font-size: 1.5rem;
+  }
+
+  .product-detail-button-container{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    margin-right: 5rem;
+    justify-content: flex-end;
+
+  }
+
+  .product-detail-button{
+    margin-left:1rem;
+  }
+
+
+
+</style>
+
+<div class="product-detail-container">
+
+
+  <div class="product-detail-body">
+
+    <div class="product-detail-image" ng-style="{'background-image': 'url({{product.images[0].url}})'}">
+
+    </div>
+
+    <div class="product-detail-text">
+      <h2>{{product.name}}</h2>
+      <p>{{product.description}}</p>
+      <formly-form fields="productDetailFields" model="productDetailData">
+
+      </formly-form>
+    </div>
+  </div>
+
+  <div class="product-detail-button-container">
+    <div class="btn btn-lg btn-info product-detail-button" ng-click="close()">Cancel</div>
+    <div class="btn btn-lg btn-danger product-detail-button" ng-click="addToCart()" analytics-on>Add To Cart</div>
+
+  </div>
+
+</div>
+

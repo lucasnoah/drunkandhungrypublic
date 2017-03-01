@@ -1,0 +1,99 @@
+<style>
+  .user-info-box{
+    background-color: white;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 5px;
+  }
+
+  .name-text{
+    text-transform: capitalize;
+  }
+
+  .form-button-container{
+    margin-top:3rem;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+  }
+  .form-button-container button{
+    margin-left:1rem;
+  }
+
+</style>
+<hr class="m-box">
+  <span us-spinner spinner-key="spinner-1" spinner-start-active="false"></span>
+
+  <!--CUSTOMER INFO FORM-->
+  <div class="user-info-box">
+
+  <div ng-show="!userEditVisible">
+    <p class="name-text">Name - {{sessionStorage.customerData.first_name}} {{sessionStorage.customerData.last_name}}</p>
+    <p>Phone number - {{sessionStorage.customerData.phone_number | tel}}</p>
+    <button ng-click="editUser()" type="button" class="btn btn-danger">Edit details</button>
+  </div>
+
+
+  <div ng-show="userEditVisible">
+
+    <form name="userForm" novalidate>
+      <formly-form model="userData" fields="userFields">
+
+        <div class="form-button-container">
+          <button ng-show="sessionStorage.displayUserEditCancel" class="btn btn-lg btn-primary" ng-click="cancelUserEdit()">Cancel</button>
+          <button type="submit" class="btn btn-lg btn-danger" ng-disabled="userForm.$invalid" ng-click="updateUser()">Update</button>
+        </div>
+
+      </formly-form>
+    </form>
+  </div>
+    </div>
+  <!--END CUSTOMER INFO FORM-->
+
+  <hr>
+
+  <!--CREDIT CARD FORM-->
+  <div class="user-info-box">
+
+  <div ng-show="!cardEditVisible">
+    <h4>Card on file: {{sessionStorage.customerData.default_stripe_data}}</h4>
+    <button ng-click="editCard()" type="button" class="btn btn-danger">Change card</button>
+  </div>
+
+  <div ng-show="cardEditVisible">
+    <form  name="creditcardform" novalidate>
+      <formly-form model="ccData" fields="ccFields">
+        <div class="form-button-container">
+          <button ng-show="sessionStorage.displayCardEditCancel" class="btn btn-lg btn-primary" ng-click="cancelCardEdit()">Cancel</button>
+          <button type="submit" class="btn btn-lg btn-danger" ng-disabled="creditcardform.$invalid" ng-click="updatePayment()">Submit</button>
+        </div>
+      </formly-form>
+    </form>
+  </div>
+  </div>
+</hr>
+  <!--END CREDITCARD FORM-->
+
+  <!-- CURRENT ADDRESS FORM -->
+    <div class="user-info-box">
+
+      <div ng-show="addressConfirmed">
+        <h4>Current Address: {{sessionStorage.currentFormattedAddress}}</h4>
+        <button ng-click="toggleAddressEdit()" type="button" class="btn btn-danger">Confirm Address</button>
+      </div>
+
+      <div ng-show="!addressConfirmed">
+        <h2>Please confirm your address.</h2>
+        <form  name="addressForm" novalidate>
+          <formly-form model="addressData" fields="addressFields">
+            <div class="form-button-container">
+              <button ng-show="sessionStorage.displayCardEditCancel" class="btn btn-lg btn-primary" ng-click="toggleAdressEdit()">Cancel</button>
+              <button type="submit" class="btn btn-lg btn-danger" ng-disabled="addressForm.$invalid" ng-click="setNewAddress()">Submit</button>
+            </div>
+          </formly-form>
+        </form>
+      </div>
+  <!--  END CURRENT ADDRESS FORM-->
+
+</div>
+  </div>

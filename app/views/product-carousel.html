@@ -1,0 +1,46 @@
+<div class="content_slider" id="event" style="display:block;" ng-if="hasItems()">
+  <div id="conslider1" class="slider_thumb owl-carousel owl-theme" style="opacity: 1; display: block;">
+    <div class="owl-wrapper-outer">
+      <div class="owl-wrapper">
+        <div class="owl-item" style="width: 192px;" ng-repeat="item in displayedItems">
+
+            <div class="row">
+            <h1 class="text-center">{{item.name}}</h1>
+            <img class="listImage" src={{item.images[0].url}} alt="">
+            </div>
+
+            <div class="row">
+            <div class="col-xs-4 col-sm-4 itemInfoHeight" style="background-color:lightcyan;">
+              <span class=""><strong>{{ item.price | centsToDollars | currency }}</strong></span>
+            </div>
+            <div class="col-xs-8 col-sm-8" style="background-color:lightgray;">
+
+              <div class="col-xs-4 col-sm-4 itemInfoHeight buttonRollover" ng-click="decrementItemCount(item)">
+                <span class="glyphicon glyphicon-minus itemInfoHeight incDecButton"></span>
+              </div>
+              <div class="col-xs-4 col-sm-4 itemInfoHeight text-center">
+                <span class=""><strong>{{sessionStorage.cartIDCount[item.id]}}</strong></span>
+              </div>
+              <div class="col-xs-4 col-sm-4 itemInfoHeight buttonRollover" ng-click="incrementItemCount(item)">
+                <span class="glyphicon glyphicon-plus incDecButton"></span>
+              </div>
+
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="owl-controls clickable">
+      <div class="owl-buttons">
+        <div class="button" ng-click="toggleLeft()">prev</div>
+        <div class="button" ng-click="toggleRight()">next</div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>

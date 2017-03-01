@@ -1,0 +1,87 @@
+
+
+<style>
+
+
+  .product-card {
+    width: 100%;
+    border-bottom: thin black solid;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+  }
+
+  .product-card:hover{
+    background-color: #f1f1f1;
+  }
+
+
+
+  .desktop-product-name-container {
+    width:30%;
+    align-self: flex-start;
+    margin-top: 4rem;
+    flex-wrap:wrap;
+
+  }
+
+  .item-title{
+    font-weight: bold;
+  }
+
+
+  .product-image{
+    width: 15%;
+    min-height:10rem;
+    height:100%;
+    margin-right: .2rem;
+    margin-left: 1rem;
+    margin-top:3rem;
+    margin-bottom:1rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    align-self: center;
+  }
+
+
+  .left-product-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  .product-button{
+    margin-top:5rem;
+    margin-right:1rem;
+    align-self: flex-start;
+
+  }
+
+</style>
+
+
+<div class="row" ng-if="item.quantity > 0">
+<div class="product-card">
+  <div class="product-image" ng-style="{'background-image': 'url({{item.images[0].url}})'}">
+  </div>
+
+  <div class="desktop-product-name-container">
+    <div class="left-product-container">
+      <div class="product-name">
+        <span class="item-title">{{item.name}}</span>
+        <p>{{item.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="product-button">
+    <button class="btn btn-block btn-danger" ng-click="showProductDetail(item)" analytics-on>
+      {{ item.price | centsToDollars | currency }}
+    </button>
+  </div>
+
+
+</div>
+
+</div>

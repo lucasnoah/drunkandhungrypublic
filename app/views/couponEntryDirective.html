@@ -1,0 +1,25 @@
+<style>
+  .coupon-form-error{
+    color:red;
+    font-size:1.9em;
+  }
+  .coupon-form-success{
+    color:lawngreen;
+    font-size: 1.9em;
+  }
+</style>
+<div>
+  <h4>Have a Coupon?</h4>
+  <form name="couponForm">
+  <formly-form fields="couponEntryFields" model="couponEntryData" form="couponForm">
+  </formly-form>
+    <div class="coupon-form-error" ng-if="!couponForm.$pristine && couponDiscount < 1 && couponEntryData.couponCode.length > 1">
+      <p stylecolor="red">Coupon code is not valid.</p>
+    </div>
+    <div class="coupon-form-success" ng-if="couponDiscount > 0">
+      <p >{{couponMessage}}</p>
+    </div>
+  </form>
+
+
+</div>

@@ -1,0 +1,198 @@
+<style>
+  .go-button{
+    width:90%;
+    max-width: 400px;
+    color: white;
+    background-color: red;
+    marign-top:1rem;
+    font-size: 1.5em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border:medium solid white;
+  }
+
+.input-group-container{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cell-input-group-container{
+  width:100%;
+  display:flex;
+  justify-content: center;
+
+}
+
+.input-box-container{
+}
+
+.cell-input-box-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height:5rem;
+}
+
+.cell-input-wrapper{
+  display:flex;
+  flex-direction: column;
+  padding-top:2rem;
+  padding-bottom:2rem;
+  justify-content: center;
+}
+
+.cell-input-box{
+  height:5rem;
+  min-width: 280px;
+  border-left:thin black solid !important;
+  border-bottom:thin black solid !important;
+  border-top:thin black solid !important;
+  border-right:none !important;
+
+}
+
+.cell-input-box::-webkit-input-placeholder{
+  padding-left:2rem;
+  font-size: large;
+  color:black;
+}
+
+.input-button-container{
+  height:5rem;
+
+  border-left:thin black solid !important;
+  border-bottom:thin black solid !important;
+  border-top:thin black solid !important;
+  border-right:thin black solid !important;
+  border-left: none !important;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+  .cell-input-button-container{
+    height:5rem;
+
+    border-left:thin black solid !important;
+    border-bottom:thin black solid !important;
+    border-top:thin black solid !important;
+    border-right:thin black solid !important;
+    border-left: none !important;
+    background-color: lavenderblush;
+    display: flex;
+    align-items: center;
+
+  }
+
+.input-button{
+  width:100%;
+  background-color: transparent;
+  border:none;
+  color: red;
+  font-size: x-large;
+
+
+
+}
+  .error-message{
+    font-size: larger;
+    color: red;
+  }
+
+  .go-button-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .location-warning{
+    width:80%;
+    margin-top:2rem;
+  }
+
+  .location-warning-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+</style>
+
+<div class="cell-input-wrapper">
+  <h3 style="color:lightgrey; font-size: medium;">Enter your address to continue</h3>
+  <form ng-submit="" name="googleForm" novalidate>
+     <div class="cell-input-group-container">
+        <div class="cell-input-box-container">
+          <input type="text" class="cell-input-box ng-pristine ng-valid ng-isolate-scope ng-empty ng-touched" es-input-scroll-on-focus="" placeholder="Enter Your Address..." ng-autocomplete ng-model="autocomplete"  details="details" autocomplete="off">
+        </div>
+        <div class="cell-input-button-container" ng-click="getLocationFromHtml()">
+          <button class="input-button" ><i class="fa fa-location-arrow"></i></button>
+        </div>
+      </div>
+
+      <!--
+      <formly-form fields="addressFields" model="details" aria-autocomplete="false" autocomplete="off">
+
+      </formly-form>
+  -->
+      <div class="location-warning-container">
+      <div class="alert alert-danger location-warning" ng-show=locationWarningMessage.visible>
+        <a href="" class="close" ng-click="hideLocationWarningMessage()" aria-label="close">&times;</a>
+        <strong><span class="error-message">{{locationWarningMessage.message}}</span></strong>
+      </div>
+      </div>
+  </form>
+
+
+  <div class="go-button-container">
+
+    <button type="button" class="btn go-button"  ng-click="enterAddress(details)"><span>SHOW ME THE STUFF!</span></button>
+  </div>
+
+</div>
+<!--
+
+<div class="row hidden-xs hidden-sm">
+<form ng-submit="" name="googleForm" novalidate>
+
+  <div class="col-sm-12 col-xs-12">
+
+
+    <div class="input-group-container">
+    <div class="input-box-container">
+      <input type="text" class="input-box ng-pristine ng-valid ng-isolate-scope ng-empty ng-touched" es-input-scroll-on-focus="" placeholder="Enter Your Address..." ng-autocomplete ng-model="autocomplete"  details="details" autocomplete="off">
+    </div>
+    <div class="input-button-container">
+      <button class="input-button" ng-click="getLocationFromHtml()"><i class="fa fa-location-arrow"></i></button>
+    </div>
+    </div>
+
+
+    <formly-form fields="addressFields" model="details" aria-autocomplete="false" autocomplete="off">
+
+    </formly-form>
+
+
+  <span ng-show="sessionStorage.currentFormattedAddress">Current location: {{sessionStorage.currentFormattedAddress}}</span>
+    <div class="alert alert-danger" ng-show=locationWarningMessage.visible>
+  <a href="" class="close" ng-click="hideLocationWarningMessage()" aria-label="close">&times;</a>
+
+  <strong><span class="error-message">{{locationWarningMessage.message}}</span></strong>
+</div>
+  </div>
+</form>
+
+
+<div class="col-sm-12 col-xs-12">
+
+<button type="button" class="btn btn-default btn-block go-button"  ng-click="enterAddress(details)"><span>SHOW ME THE STUFF!</span></button>
+</div>
+
+
+</div>
+
+-->

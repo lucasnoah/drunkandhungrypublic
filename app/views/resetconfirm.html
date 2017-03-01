@@ -1,0 +1,21 @@
+<navbar></navbar>
+<div class="container">
+<div>
+  <h1>Create a new password</h1>
+  <p>Please create and confirm your new password.</p>
+  <form ng-submit="confirmPassword()" name="confirmPasswordForm">
+    <formly-form model="confirmData" fields="confirmPasswordFields">
+      <button type="submit" class="btn btn-lg red-button">Submit</button>
+    </formly-form>
+    </form>
+</div>
+<div ng-if="resetFail">
+  <h1>Failure</h1>
+  <p>The reset request failed. Are you sure you have an account?</p>
+
+</div>
+<div ng-if="resetSuccess">
+  <h1>Success!</h1>
+  <P>An email has been sent to your account. Please check it and follow the reset confirmation link.</P>
+</div>
+</div>

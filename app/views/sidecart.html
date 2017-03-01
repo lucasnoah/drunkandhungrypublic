@@ -1,0 +1,81 @@
+
+<style>
+  .cart-wrapper{
+    display:flex;
+    flex-direction: column;
+  }
+  .cart-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid thin black;
+    margin-top: 3rem;
+  }
+  .info-holder{
+  }
+  .button-holder{
+  }
+
+  .error-box{
+    background-color: lightcoral;
+    min-height: 10rem;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin-top:3rem;
+    margin-bottom:3rem;
+    border-radius: 1%;
+  }
+</style>
+<h1>Cart</h1>
+<div class="cart-wrapper">
+<div class="cart-item noselect" ng-repeat="item in items | cartitems: cartcount: item">
+
+    <div class="info-holder">
+      <span>{{item.name}}</span>
+      <span> x {{cartcount[item.id].count}}</span>
+      <span> @ </span>
+      <span>{{item.price | centsToDollars | currency}}</span>
+    </div>
+
+
+
+    <div class="button-holder">
+    <span class="buttonRollover" ng-click="decrementItemCount(item)">
+      <span class="glyphicon glyphicon-minus"></span>
+    </span>
+    <span class="">
+      <span class="">{{cartcount[item.id].count}}</span>
+    </span>
+    <span class="buttonRollover" ng-click="incrementItemCount(item)">
+      <span class="glyphicon glyphicon-plus"></span>
+    </span>
+    </div>
+  </div>
+  <div class="noselect" ng-show="cartcount[item.id].error">
+    <span style="color:red">Only {{cartcount[item.id].remaining}} of these left. Your order has been modified</span>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+<span>TOTAL:</span>
+<span>{{cartTotalPrice() | centsToDollars | currency}}</span>
+    </div>
+  <p style="color:red;" ng-if="showErrorMessage">{{errorMessage}}</p>
+</div>
+<div class="error-box" ng-if="minOrderAmount > cartTotalPrice() && cartTotalPrice() != 0">
+  <p >Please add {{(minOrderAmount - cartTotalPrice()) | centsToDollars | currency}} to complete the minimum order amount.</p>
+</div>
+
+<div class="">
+  <div class="">
+  <a class="btn btn-default" href="" ng-click="checkCartAndMoveOn()" analytics-on>Pay for {{ cartitemcount}} Items</a>
+    </div>
+</div>
+
+<hr>
+<beer-loader></beer-loader>
